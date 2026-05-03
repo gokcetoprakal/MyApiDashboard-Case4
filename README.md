@@ -1,1 +1,4 @@
-Bu projede AkademiQ.AI bünyesinde Murat Yücedağ ve Abdullah Kuş hocalarımın rehberliğinde geliştirmiş olduğum Rapid Api projesi bulunmaktadır. 
+Bu projede AkademiQ.AI bünyesinde Murat Yücedağ ve Abdullah Kuş hocalarımın rehberliğinde geliştirmişolduğum 90lar interneti stilinde Rapid Api projesi bulunmaktadır. 
+![Açıklama](/project4/project4_1.png)
+![Açıklama](/project4/project4_2.png)
+![Açıklama](/project4/project4_3.png)
