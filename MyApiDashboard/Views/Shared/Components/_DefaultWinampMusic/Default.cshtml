@@ -1,0 +1,57 @@
+﻿@using MyApiDashboard.Dtos
+@model MusicDto
+@*
+    Winamp Music Player
+*@
+<section class="col-md-3">
+    <div class="win-window">
+        <div class="win-title-bar" style="background:#333;">
+            <span>WINAMP - SANDSTORM.MP3</span>
+            <span>[-]</span>
+        </div>
+        <div class="win-body" style="background:#111; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Şarkı Bilgisi Alanı -->
+            <div class="mb-2" style="font-family: 'Courier New', monospace; line-height: 1.2;">
+                <div style="color: #00ff00; font-size: 0.75rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                    @Model.Artist - @Model.Song
+                </div>
+                <div style="color: #008000; font-size: 0.65rem;">
+                    128 kbps 44.1 khz
+                </div>
+            </div>
+
+            <!-- Progress Bar (Oynatma Çubuğu) -->
+            <div class="progress mb-2" style="height:6px; background:#333; border: 1px solid #444;">
+                <div class="progress-bar bg-success" role="progressbar" style="width:65%; box-shadow: 0 0 5px #00ff00;"></div>
+            </div>
+
+            <!-- Kontrol Butonları -->
+            <div class="btn-group w-100 shadow-sm">
+                <button class="btn btn-dark btn-sm p-0" style="font-size:9px; border: 1px solid #444;">PREV</button>
+                <button class="btn btn-dark btn-sm p-0" style="font-size:9px; border: 1px solid #444;">PLAY</button>
+                <button class="btn btn-dark btn-sm p-0" style="font-size:9px; border: 1px solid #444;">STOP</button>
+                <button class="btn btn-dark btn-sm p-0" style="font-size:9px; border: 1px solid #444;">NEXT</button>
+            </div>
+        </div>
+        <div class="refresh-wrapper" style="background:#111; border-top: 1px solid #333;">
+            <button class="win-refresh-btn"
+                    onclick="refreshMusic()"
+                    style="background: #222; color: #aaa; border-color: #444; width: 100%; cursor: pointer;">
+                REFRESH
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+    function refreshMusic() {
+        // MusicController içindeki metodu çağırıyoruz
+        fetch('/Music/GetDailyMusicComponent')
+            .then(response => response.text())
+            .then(html => {
+                // Gelen yeni HTML'i mevcut section ile değiştiriyoruz
+                document.getElementById("music-section").outerHTML = html;
+            })
+            .catch(err => console.error("Müzik güncellenirken hata oluştu:", err));
+    }
+</script>

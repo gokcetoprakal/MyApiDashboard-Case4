@@ -1,0 +1,46 @@
+﻿@using MyApiDashboard.Dtos
+@model ExchangeDto
+@*
+    EXCHANGE RATES
+*@
+<section class="col-md-3" id="exchange-section">
+    <div class="win-window">
+        <div class="win-title-bar" style="background: #2e7d32;">
+            <span>CURRENCY_EXCHANGE.SYS</span>
+            <span>[$]</span>
+        </div>
+        <div class="win-body" style="background: #1a1a1a; color: #00ff00; padding: 15px; font-family: 'Consolas', monospace;">
+            <div class="text-center mb-3">
+                <div style="font-size: 0.7rem; color: #888;">USD / TRY</div>
+                <div style="font-size: 1.8rem; font-weight: bold; color: #fff;">
+                    ₺ @Model.UsdTry.ToString("N4")
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between" style="font-size: 0.8rem; border-top: 1px solid #333; pt-2">
+                <div>
+                    <span style="color: #ff5252;">▼ LOW:</span><br />
+                    <span>@Model.Low.ToString("N4")</span>
+                </div>
+                <div class="text-end">
+                    <span style="color: #69f0ae;">▲ HIGH:</span><br />
+                    <span>@Model.High.ToString("N4")</span>
+                </div>
+            </div>
+        </div>
+        <div class="refresh-wrapper">
+            <button class="win-refresh-btn" onclick="refreshExchange()">UPDATE RATES</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    function refreshExchange() {
+        fetch('/Exchange/GetExchangeRatesComponent')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("exchange-section").outerHTML = html;
+            })
+            .catch(err => console.error("Döviz hatası:", err));
+    }
+</script>

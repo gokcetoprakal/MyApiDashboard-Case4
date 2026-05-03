@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM_OS V1.0 - FULL DASHBOARD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --win-silver: #c0c0c0;
+            --win-blue: #000080;
+            --win-border-light: #ffffff;
+            --win-border-dark: #808080;
+        }
+
+        body {
+            background-color: #008080;
+            font-family: 'Tahoma', sans-serif;
+            margin: 0;
+            padding-top: 45px;
+            padding-bottom: 20px;
+        }
+
+        /* Üst Bar Tasarımı */
+        .top-bar {
+            background-color: var(--win-silver);
+            border-bottom: 2px solid var(--win-border-dark);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Pencere ve Bileşen Yapısı */
+        .win-window {
+            background-color: var(--win-silver);
+            border: 2px solid;
+            border-color: var(--win-border-light) var(--win-border-dark) var(--win-border-dark) var(--win-border-light);
+            padding: 2px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .win-title-bar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            color: white;
+            padding: 2px 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+
+        .win-body {
+            background-color: black;
+            color: #00ff00;
+            padding: 10px;
+            flex-grow: 1;
+            font-family: 'Courier New', monospace;
+            border: 2px inset var(--win-silver);
+            min-height: 140px;
+            overflow: hidden;
+        }
+
+        /* Refresh Alanı */
+        .refresh-wrapper {
+            padding: 4px;
+            text-align: right;
+            background-color: var(--win-silver);
+        }
+
+        .win-refresh-btn {
+            background: var(--win-silver);
+            border: 2px solid;
+            border-color: var(--win-border-light) var(--win-border-dark) var(--win-border-dark) var(--win-border-light);
+            font-size: 0.6rem;
+            padding: 1px 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .win-refresh-btn:active {
+            border-color: var(--win-border-dark) var(--win-border-light) var(--win-border-light) var(--win-border-dark);
+        }
+
+        /* Özel Renk Temaları */
+        .bg-white-ui { background-color: white; color: black; }
+        .bg-blue-ui { background: linear-gradient(135deg, #1e5799, #7db9e8); color: white; }
+        .bg-purple-ui { background: #4b0082; color: white; border: 1px dashed white; }
+
+        .warning-stripe {
+            background: repeating-linear-gradient(45deg, #fcd116, #fcd116 20px, #000 20px, #000 40px);
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+            font-weight: bold;
+            color: rgb(255, 0, 0);
+            font-size: 0.75rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="menu-items d-flex align-items-center">
+            <!-- Proje İsmi: Retro Dosya Formatında -->
+            <strong class="me-3" style="letter-spacing: 1px;">C:\>MY_API~1.EXE</strong>
+            
+            <nav>
+                <ul class="d-flex list-unstyled m-0" style="gap: 15px;">
+                    <li>
+                        <a href="/Main" class="retro-link text-decoration-none text-dark">Main</a>
+                    </li>
+                    <li>
+                        <a href="/Links" class="retro-link text-decoration-none text-dark">Links</a>
+                    </li>
+                    <li>
+                        <a href="/Contact" class="retro-link text-decoration-none text-dark">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+            <div class="clock border-start border-secondary ps-3 fw-bold" id="live-clock">
+                06:17 AM
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="warning-stripe">WARNING: BE CAREFUL ABOUT API ENDPOINTS. YOU DON'T WANT TO LOSE MONEY :)</div>
+
+        <div class="row g-3">
+            
+            <!-- 1. FUEL PRICES -->
+            <section class="col-md-3">
+                <div class="win-window">
+                    <div class="win-title-bar"><span>FUEL_PRICES.EXE</span><span>[x]</span></div>
+                    <div class="win-body">
+                        <div style="color: orange;">BENZIN: 42.80</div>
+                        <div style="color: orange;">MOTORIN: 41.20</div>
+                    </div>
+                    <div class="refresh-wrapper"><button class="win-refresh-btn">Refresh</button></div>
+                </div>
+            </section>
+
+            <!-- 2. EXCHANGE RATES -->
+            <section class="col-md-3">
+                <div class="win-window">
+                    <div class="win-title-bar"><span>EXCHANGE_RATES.DLL</span><span>[x]</span></div>
+                    <div class="win-body d-flex align-items-end">
+                        <svg width="100%" height="60"><polyline points="0,50 15,30 30,45 45,15 60,35 75,10 90,40" fill="none" stroke="#00ff00" stroke-width="2" /></svg>
+                    </div>
+                    <div class="refresh-wrapper"><button class="win-refresh-btn">Refresh</button></div>
+                </div>
+            </section>
+
+            <!-- 3. CRYPTO MINER -->
+            <section class="col-md-3">
+                <div class="win-window">
+                    <div class="win-title-bar"><span>CRYPTO_MINER.SYS</span><span>[x]</span></div>
+                    <div class="win-body">
+                        <div class="d-flex justify-content-between"><small>BTC:</small> <small>$67,241</small></div>
+                        <div class="d-flex justify-content-between"><small>ETH:</small> <small>$3,512</small></div>
+                    </div>
+                    <div class="refresh-wrapper"><button class="win-refresh-btn">Refresh</button></div>
+                </div>
+            </section>
+
+            <!-- 4. WEATHER SAT -->
+            <section class="col-md-3">
+                <div class="win-window">
+                    <div class="win-title-bar"><span>WEATHER_SAT.APP</span><span>[x]</span></div>
+                    <div class="win-body bg-blue-ui text-center">
+                        <h2 class="mb-0">24°C</h2>
+                        <small>ISTANBUL</small>
+                    </div>
+                    <div class="refresh-wrapper bg-blue-ui"><button class="win-refresh-btn">Refresh</button></div>
+                </div>
+            </section>
+
+            <!-- 5. LIVE SCORES -->
+            <section class="col-md-3">
+                <div class="win-window">
+                    <div class="win-title-bar"><span>LIVE_SCORES.SCR</span><span>[x]</span></div>
+                    <div class="win-body text-center">
+                        <small>GS - FB</small>
+                        <h2 class="text-danger">2 : 1</h2>
+                    </div>
+                    <div class="refresh-wrapper"><button class="win-refresh-btn">Refresh</button></div>
+                </div>
+            </section>
+
+            <!-- 6. WINAMP -->
+            <section class="col-md-3">
+                <div class="win-window">
+                    <div class="win-title-bar" style="background:#333;">
+                        <span>WINAMP - SANDSTORM.MP3</span>
+                        <span>[-]</span>
+                    </div>
+                    <div class="win-body" style="background:#111; display: flex; flex-direction: column; justify-content: space-between;">
+                        <!-- Şarkı Bilgisi Alanı -->
+                        <div class="mb-2" style="font-family: 'Courier New', monospace; line-height: 1.2;">
+                            <div style="color: #00ff00; font-size: 0.75rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                1. Darude - Sandstorm
+                            </div>
+                            <div style="color: #008000; font-size: 0.65rem;">
+                                128 kbps 44.1 khz
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar (Oynatma Çubuğu) -->
+                        <div class="progress mb-2" style="height:6px; background:#333; border: 1px solid #444;">
+                            <div class="progress-bar bg-success" role="progressbar" style="width:65%; box-shadow: 0 0 5px #00ff00;"></div>
+                        </div>
+
+                        <!-- Kontrol Butonları -->
+                        <div class="btn-group w-100 shadow-sm">
+                            <button class="btn btn-dark btn-sm p-0" style="font-size:9px; border: 1px solid #444;">PREV</button>
+                            <button class="btn btn-dark btn-sm p-0" style="font-size:9px; border: 1px solid #444;">PLAY</button>
+                            <button class="btn btn-dark btn-sm p-0" style="font-size:9px; border: 1px solid #444;">STOP</button>
+                            <button class="btn btn-dark btn-sm p-0" style="font-size:9px; border: 1px solid #444;">NEXT</button>
+                        </div>
+                    </div>
+                    <div class="refresh-wrapper" style="background:#111; border-top: 1px solid #333;">
+                        <button class="win-refresh-btn" style="background: #222; color: #aaa; border-color: #444;">Refresh</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. KITCHEN OS (Recipe) -->
+            <section class="col-md-3">
+    <div class="win-window">
+        <!-- Başlık Çubuğu -->
+        <div class="win-title-bar">
+            <span>KITCHEN_OS.TXT</span>
+            <span>[x]</span>
+        </div>
+
+        <!-- İçerik Alanı: Sadece doğal overflow kullanıldı -->
+        <div class="win-body bg-white-ui" style="height: 150px; overflow-y: scroll; border: 2px inset var(--win-border-dark);">
+            <div class="p-2">
+                <strong class="text-danger d-block mb-1" style="font-size:0.85rem;">Mama's Lasagna</strong>
+                <ul class="ps-3 mt-1" style="font-size:0.75rem; color: #000; font-family: 'Tahoma', sans-serif; line-height: 1.4;">
+                    <li>- 12 sheets lasagna pasta</li>
+                    <li>- 500g ground beef</li>
+                    <li>- 2 cups Parmesan cheese</li>
+                    <li>- 3 cups Bechamel sauce</li>
+                    <li>- 1 jar Marinara sauce</li>
+                    <li>- Fresh basil leaves</li>
+                    <li>- 2 cloves garlic, minced</li>
+                    <li>- 1 large onion, diced</li>
+                    <li>- Salt & Black pepper</li>
+                    <li>- Ricotta cheese layer</li>
+                    <li>- Olive oil for sautéing</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Alt Kısım -->
+        <div class="refresh-wrapper bg-white-ui">
+            <button class="win-refresh-btn">Refresh</button>
+        </div>
+    </div>
+</section>
+
+            <!-- 8. WISDOM PROMPT -->
+            <section class="col-md-3">
+                <div class="win-window">
+                    <div class="win-title-bar"><span>WISDOM_PROMPT.CMD</span><span>[x]</span></div>
+                    <div class="win-body bg-purple-ui">
+                        <small><i>"The only limit to our realization of tomorrow is our doubts of today."</i></small>
+                    </div>
+                    <div class="refresh-wrapper bg-purple-ui text-white"><button class="win-refresh-btn">Refresh</button></div>
+                </div>
+            </section>
+
+            <!-- 9. DAILY NEWS -->
+            <section class="col-md-6">
+                <div class="win-window">
+                    <div class="win-title-bar"><span>DAILY_NEWS.HTML</span><span>[x]</span></div>
+                    <div class="win-body bg-white-ui">
+                        <h6 class="border-bottom pb-1">THE RETRO TIMES</h6>
+                        <div class="row g-2">
+                            <div class="col-4"><div style="background:#ccc; height:60px;"></div></div>
+                            <div class="col-8" style="font-size:0.7rem;"><strong>INTERNET SPEEDS HIT 56K!</strong><br>The future of communication is here.</div>
+                        </div>
+                    </div>
+                    <div class="refresh-wrapper bg-white-ui"><button class="win-refresh-btn">Refresh</button></div>
+                </div>
+            </section>
+
+           <!-- 10. CINEMA STREAM -->
+            <section class="col-md-6">
+                <div class="win-window">
+                    <div class="win-title-bar"><span>CINEMA_STREAM.AVI</span><span>[x]</span></div>
+                    <div class="win-body p-0 d-flex flex-column align-items-center justify-content-center" style="background:#000; min-height: 250px; overflow: hidden;">
+                        
+                        <img src="screen.jpg" alt="Movie Poster" style="width: 100%; height: auto; max-height: 200px; object-fit: cover; opacity: 0.8;">
+                        
+                        <div class="mt-auto mb-2 w-100 text-center" style="background: rgba(0,0,0,0.7);">
+                            <span class="movie-name" style="color: #ffff00; font-family: 'Courier New', monospace; font-size: 0.9rem; font-weight: bold; text-shadow: 1px 1px 2px #000;">
+                                TRON REBOOT - NOW SHOWING
+                            </span>
+                        </div>
+                        
+                    </div>
+                    <div class="refresh-wrapper">
+                        <button class="win-refresh-btn">Refresh</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+</body>
+</html>

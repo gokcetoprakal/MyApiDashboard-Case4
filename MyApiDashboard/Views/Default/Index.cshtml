@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Layout/_PageLayout.cshtml";
+}
+<div class="warning-stripe">WARNING: BE CAREFUL ABOUT API ENDPOINTS. YOU DON'T WANT TO LOSE MONEY :)</div>
+
+<div class="row g-3">
+
+    <!-- 1. FUEL PRICES -->
+    @await Component.InvokeAsync("_DefaultFuelPrices")
+
+    <!-- 2. EXCHANGE RATES -->
+    @await Component.InvokeAsync("_DefaultExchangeRates")
+
+    <!-- 3. CRYPTO MINER -->
+    @await Component.InvokeAsync("_DefaultCryptoMiner")
+
+    <!-- 4. WEATHER SAT -->
+    @await Component.InvokeAsync("_DefaultWeather")
+
+    <!-- 5. LIVE SCORES -->
+    @await Component.InvokeAsync("_DefaultLiveScores")
+
+    <!-- 6. WINAMP -->
+    @await Component.InvokeAsync("_DefaultWinampMusic")
+
+    <!-- 7. KITCHEN OS (Recipe) -->
+    @await Component.InvokeAsync("_DefaultKitchenRecipe")
+
+    <!-- 8. WISDOM PROMPT -->
+    @await Component.InvokeAsync("_DefaultWisdomPrompt")
+
+    <!-- 9. DAILY NEWS -->
+    @await Component.InvokeAsync("_DefaultDailyNews")
+
+    <!-- 10. CINEMA STREAM -->
+    @await Component.InvokeAsync("_DefaultCinemaStream")
+
+</div>

@@ -1,0 +1,42 @@
+﻿@using MyApiDashboard.Dtos
+@model CryptoDto
+@*
+    CRYPTO MINER
+*@
+<section class="col-md-3">
+    <div class="win-window">
+        <div class="win-title-bar"><span>CRYPTO_MINER.SYS</span><span>[x]</span></div>
+        <div class="win-body">
+            <div class="d-flex justify-content-between"><small>BTC:</small> <small>@Model.Btc</small></div>
+            <div class="d-flex justify-content-between"><small>ETH:</small> <small>@Model.Eth</small></div>
+            <div class="d-flex justify-content-between"><small>SOL:</small> <small>@Model.Sol</small></div>
+            <div class="d-flex justify-content-between"><small>XRP:</small> <small>@Model.Xrp</small></div>
+        </div>
+        <div class="refresh-wrapper" style="background: #111; border-top: 1px solid #333;">
+            <button class="win-refresh-btn"
+                    onclick="refreshCrypto()"
+                    style="width: 100%; background: #222; color: #00ff00; border: 1px solid #004400; cursor: pointer; font-size: 11px;">
+                Refresh
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+    function refreshCrypto() {
+        // CryptoController'daki metodumuzu çağırıyoruz
+        fetch('/Crypto/GetCryptoPricesComponent')
+            .then(response => {
+                if (!response.ok) throw new Error("Network response was not ok");
+                return response.text();
+            })
+            .then(html => {
+                // Mevcut crypto-section alanını yeni gelen HTML ile değiştiriyoruz
+                document.getElementById("crypto-section").outerHTML = html;
+            })
+            .catch(err => {
+                console.error("Crypto update error:", err);
+                alert("Blockchain bağlantısı kesildi!");
+            });
+    }
+</script>

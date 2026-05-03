@@ -1,0 +1,56 @@
+﻿@using MyApiDashboard.Dtos
+@model QuoteDto
+@*
+    Wisdom Prompt
+*@
+<section class="col-md-3" id="quote-section">
+    <div class="win-window" style="display: flex; flex-direction: column; height: 100%;">
+        @* Title Bar *@
+        <div class="win-title-bar" style="background: #4b0082; flex-shrink: 0;">
+            <span>WISDOM_PROMPT.CMD</span>
+            <span>[x]</span>
+        </div>
+
+        @* Body - Orta Kısım *@
+        <div class="win-body bg-purple-ui" style="flex-grow: 1; padding: 10px; color: #f1f1f1; font-family: 'Consolas', 'Courier New', monospace; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <div class="mb-2">
+                    <span style="color: #ffd700;">C:\Users\Admin></span> get_wisdom
+                </div>
+
+                <div style="font-style: italic; border-left: 2px solid #ffd700; padding-left: 10px; margin-bottom: 10px; font-size: 0.9rem;">
+                    "@Model.Text"
+                </div>
+            </div>
+
+            <div class="text-end" style="color: #ffd700; font-weight: bold; font-size: 0.85rem;">
+                -- @(Model.Author ?? "Unknown")
+            </div>
+        </div>
+
+        @* Refresh Wrapper - En Alt *@
+        <div class="refresh-wrapper" style="background: #4b0082; padding: 5px; border-top: 1px solid #ffffff55; flex-shrink: 0;">
+            <button class="win-refresh-btn"
+                    onclick="refreshQuote()"
+                    style="width: 100%; background: #c0c0c0; color: black; border: 2px solid; border-color: #fff #808080 #808080 #fff; cursor: pointer; font-family: 'Tahoma', sans-serif; font-size: 11px; font-weight: bold;">
+                REFRESH
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+    function refreshQuote() {
+        // QuoteController içindeki metodu çağırıyoruz
+        fetch('/Quote/GetRandomQuoteComponent')
+            .then(response => {
+                if (!response.ok) throw new Error("Connection failed");
+                return response.text();
+            })
+            .then(html => {
+                // Gelen yeni HTML'i mevcut section (quote-section) ile değiştiriyoruz
+                document.getElementById("quote-section").outerHTML = html;
+            })
+            .catch(err => console.error("Bilgelik sözü güncellenirken hata oluştu:", err));
+    }
+</script>

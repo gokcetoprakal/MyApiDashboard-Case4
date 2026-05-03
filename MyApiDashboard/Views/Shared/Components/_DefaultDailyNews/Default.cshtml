@@ -1,0 +1,50 @@
+﻿@using MyApiDashboard.Dtos
+@model List<NewsDto>
+@*
+    Daily News
+*@
+<section class="col-md-6">
+    <div class="win-window">
+        <div class="win-title-bar">
+            <span>DAILY_NEWS.HTML</span>
+            <span>[x]</span>
+        </div>
+
+        <div class="win-body bg-white-ui">
+            <h6 class="border-bottom pb-1">THE RETRO TIMES</h6>
+
+            <ul style="font-size:0.75rem; padding-left: 15px;">
+                @foreach(var item in Model){
+                <li style="margin-bottom:10px; border-bottom:1px solid #ccc; padding-bottom:6px;">
+
+                    <div style="font-weight:bold; font-size:0.85rem;">
+                        @item.Title
+                    </div>
+                    <div>
+                        <a href="@item.Url" target="_blank"
+                           style="font-size:0.7rem; color:blue; text-decoration:underline;">
+                            Go to news page →
+                        </a>
+                    </div>
+
+                </li>
+                }
+            </ul>
+        </div>
+        <div class="refresh-wrapper bg-white-ui">
+            <button class="win-refresh-btn" onclick="refreshNews()">Refresh</button>
+        </div>
+    </div>
+</section>
+<script>
+    function refreshNews() {
+        // NewsController içindeki metodu çağırıyoruz
+        fetch('/News/GetNewsComponent')
+            .then(res => res.text())
+            .then(html => {
+                // Gelen yeni HTML'i mevcut news-section ile değiştiriyoruz
+                document.getElementById("news-section").outerHTML = html;
+            })
+            .catch(err => console.log("News error:", err));
+    }
+</script>

@@ -1,0 +1,176 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Layout/_PageLayout.cshtml";
+}
+<div class="links-grid">
+    <!-- API Kaynakları -->
+    <div class="link-card">
+        <div class="card-header">FUEL_DATA.INI</div>
+        <div class="card-body">
+            <p>CongoKirsty / UK Daily Fuel Prices</p>
+            <a href="https://rapidapi.com/congokirsty/api/uk-daily-fuel-prices" target="_blank" class="retro-btn">EXECUTE</a>
+        </div>
+    </div>
+
+    <div class="link-card">
+        <div class="card-header">EXCHANGE_LIB.DLL</div>
+        <div class="card-body">
+            <p>PrincipalApis / Currency Conversion</p>
+            <a href="https://rapidapi.com/principalapis/api/currency-conversion-and-exchange-rates" target="_blank" class="retro-btn">EXECUTE</a>
+        </div>
+    </div>
+
+    <div class="link-card">
+        <div class="card-header">CRYPTO_CORE.SYS</div>
+        <div class="card-body">
+            <p>CoinGecko / Crypto Prices</p>
+            <a href="https://rapidapi.com/coingecko/api/coingecko" target="_blank" class="retro-btn">EXECUTE</a>
+        </div>
+    </div>
+
+    <div class="link-card">
+        <div class="card-header">RECIPE_DB.DAT</div>
+        <div class="card-body">
+            <p>ApiDojo / Tasty API</p>
+            <a href="https://rapidapi.com/apidojo/api/tasty" target="_blank" class="retro-btn">EXECUTE</a>
+        </div>
+    </div>
+
+    <div class="link-card">
+        <div class="card-header">WEATHER_SAT.CFG</div>
+        <div class="card-body">
+            <p>WorldAPI / Open Weather 13</p>
+            <a href="https://rapidapi.com/worldapi/api/open-weather13" target="_blank" class="retro-btn">EXECUTE</a>
+        </div>
+    </div>
+
+    <div class="link-card">
+        <div class="card-header">FOOTBALL_LIVE.LOG</div>
+        <div class="card-body">
+            <p>Free API / Live Football Data</p>
+            <a href="https://rapidapi.com/Creativesdev/api/free-api-live-football-data" target="_blank" class="retro-btn">EXECUTE</a>
+        </div>
+    </div>
+
+    <div class="link-card">
+        <div class="card-header">GLOBAL_NEWS.HTML</div>
+        <div class="card-body">
+            <p>Letscrape / Real-time News</p>
+            <a href="https://rapidapi.com/letscrape-6bRBa3QguO5/api/real-time-news-data" target="_blank" class="retro-btn">EXECUTE</a>
+        </div>
+    </div>
+
+    <div class="link-card">
+        <div class="card-header">CINEMA_LIST.AVI</div>
+        <div class="card-body">
+            <p>APIRobots / TMDB Movie API</p>
+            <a href="https://rapidapi.com/apirobotssquad-apirobotssquad-default/api/tmdb-movies-and-tv-shows-api-by-apirobots" target="_blank" class="retro-btn">EXECUTE</a>
+        </div>
+    </div>
+
+    <div class="link-card">
+        <div class="card-header">SPOTIFY_REF.MP3</div>
+        <div class="card-body">
+            <p>Check Leaked CC/ Spotify81 API</p>
+            <a href="https://rapidapi.com/airaudoeduardo/api/spotify81" target="_blank" class="retro-btn">EXECUTE</a>
+        </div>
+    </div>
+
+    <div class="link-card shadow-card">
+        <div class="card-header">WISDOM_QUOTE.TXT</div>
+        <div class="card-body">
+            <p>Shreekant74sk / Quotes API</p>
+            <a href="https://rapidapi.com/shreekant74sk/api/quotes-api12" target="_blank" class="retro-btn">EXECUTE</a>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    
+    .retro-container {
+        padding: 20px;
+    }
+
+    .status-bar {
+        background-color: #c0c0c0;
+        color: black;
+        padding: 5px 10px;
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        border: 2px solid #ffffff;
+        border-right-color: #808080;
+        border-bottom-color: #808080;
+        margin-bottom: 15px;
+    }
+
+    .warning-banner {
+        background: repeating-linear-gradient(45deg, #ffd700, #ffd700 10px, #000 10px, #000 20px);
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        padding: 5px;
+        margin-bottom: 20px;
+        border: 2px solid black;
+        text-shadow: 1px 1px black;
+    }
+
+    .links-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .link-card {
+        background-color: #c0c0c0;
+        border: 2px solid #ffffff;
+        border-right-color: #808080;
+        border-bottom-color: #808080;
+        color: black;
+    }
+
+    .card-header {
+        background-color: #000080;
+        color: white;
+        padding: 3px 8px;
+        font-weight: bold;
+        font-size: 0.9em;
+    }
+
+    .card-body {
+        padding: 15px;
+        text-align: center;
+    }
+
+        .card-body p {
+            font-size: 0.85em;
+            margin-bottom: 15px;
+            height: 35px;
+            overflow: hidden;
+        }
+
+    .retro-btn {
+        display: inline-block;
+        padding: 5px 15px;
+        background-color: #c0c0c0;
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+        border: 2px solid #ffffff;
+        border-right-color: #404040;
+        border-bottom-color: #404040;
+    }
+
+        .retro-btn:active {
+            border: 2px solid #404040;
+            border-right-color: #ffffff;
+            border-bottom-color: #ffffff;
+            padding: 6px 14px 4px 16px;
+        }
+
+        .retro-btn:hover {
+            background-color: #d0d0d0;
+        }
+</style>

@@ -1,0 +1,31 @@
+﻿@using MyApiDashboard.Dtos
+@model LiveMatchDto
+@*
+    LIVE SCORES
+*@
+<section class="col-md-3">
+    <div class="win-window">
+        <div class="win-title-bar"><span>LIVE_SCORES.SCR</span><span>[x]</span></div>
+        <div class="win-body text-center">
+            <small>@Model.HomeTeam - @Model.AwayTeam</small>
+            <h2 class="text-danger">@Model.HomeScore : @Model.AwayScore</h2>
+        </div>
+        <div class="refresh-wrapper"><button class="win-refresh-btn" onclick="refreshLiveScores()">Refresh</button></div>
+    </div>
+</section>
+
+<script>
+    function refreshLiveScores() {
+        // LiveMatchController içindeki metodu çağırıyoruz
+        fetch('/LiveMatch/GetLiveMatchComponent')
+            .then(response => {
+                if (!response.ok) throw new Error("Live match service unavailable");
+                return response.text();
+            })
+            .then(html => {
+                // Gelen yeni HTML'i mevcut section (live-scores-section) ile değiştiriyoruz
+                document.getElementById("live-scores-section").outerHTML = html;
+            })
+            .catch(err => console.error("Canlı skorlar güncellenirken hata oluştu:", err));
+    }
+</script>

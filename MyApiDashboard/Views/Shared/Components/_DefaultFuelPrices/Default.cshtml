@@ -1,0 +1,16 @@
+﻿@using MyApiDashboard.Dtos
+@model FuelDto
+@*
+   FUEL PRICES.EXE
+*@
+<section class="col-md-3">
+    <div class="win-window">
+        <div class="win-title-bar"><span>FUEL_PRICES.EXE</span><span>[x]</span></div>
+        <div class="win-body">
+            <div style="color: orange;">BENZIN: @Model.Benzin</div>
+            <div style="color: orange;">MOTORIN: @Model.Motorin</div>
+            <div style="color: orange;">LPG: @Model.Lpg</div>
+        </div>
+        <div class="refresh-wrapper"><button class="win-refresh-btn">Refresh</button></div>
+    </div>
+</section>

@@ -1,0 +1,180 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM_OS V1.0 - FULL DASHBOARD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --win-silver: #c0c0c0;
+            --win-blue: #000080;
+            --win-border-light: #ffffff;
+            --win-border-dark: #808080;
+        }
+
+        body {
+            background-color: #008080;
+            font-family: 'Tahoma', sans-serif;
+            margin: 0;
+            padding-top: 45px;
+            padding-bottom: 20px;
+        }
+
+        /* Üst Bar Tasarımı */
+        .top-bar {
+            background-color: var(--win-silver);
+            border-bottom: 2px solid var(--win-border-dark);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Pencere ve Bileşen Yapısı */
+        .win-window {
+            background-color: var(--win-silver);
+            border: 2px solid;
+            border-color: var(--win-border-light) var(--win-border-dark) var(--win-border-dark) var(--win-border-light);
+            padding: 2px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .win-title-bar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            color: white;
+            padding: 2px 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+
+        .win-body {
+            background-color: black;
+            color: #00ff00;
+            padding: 10px;
+            flex-grow: 1;
+            font-family: 'Courier New', monospace;
+            border: 2px inset var(--win-silver);
+            min-height: 140px;
+            overflow: hidden;
+        }
+
+        /* Refresh Alanı */
+        .refresh-wrapper {
+            padding: 4px;
+            text-align: right;
+            background-color: var(--win-silver);
+        }
+
+        .win-refresh-btn {
+            background: var(--win-silver);
+            border: 2px solid;
+            border-color: var(--win-border-light) var(--win-border-dark) var(--win-border-dark) var(--win-border-light);
+            font-size: 0.6rem;
+            padding: 1px 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .win-refresh-btn:active {
+            border-color: var(--win-border-dark) var(--win-border-light) var(--win-border-light) var(--win-border-dark);
+        }
+
+        /* Özel Renk Temaları */
+        .bg-white-ui { background-color: white; color: black; }
+        .bg-blue-ui { background: linear-gradient(135deg, #1e5799, #7db9e8); color: white; }
+        .bg-purple-ui { background: #4b0082; color: white; border: 1px dashed white; }
+
+        .warning-stripe {
+            background: repeating-linear-gradient(45deg, #fcd116, #fcd116 20px, #000 20px, #000 40px);
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+            font-weight: bold;
+            color: rgb(255, 0, 0);
+            font-size: 0.75rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="menu-items d-flex align-items-center">
+                <!-- Proje İsmi: Retro Dosya Formatında -->
+                <strong class="me-3" style="letter-spacing: 1px;">C:\>MY_API~1.EXE</strong>
+
+                <nav>
+                    <ul class="d-flex list-unstyled m-0" style="gap: 15px;">
+                        <li>
+                            <a href="/Default/Index" class="retro-link text-decoration-none text-dark">Main</a>
+                        </li>
+                        <li>
+                            <a href="/Links/Index" class="retro-link text-decoration-none text-dark">Links</a>
+                        </li>
+                        <li>
+                            <a href="/Contact/Index" class="retro-link text-decoration-none text-dark">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- Navbar içindeki saat alanı -->
+            <div class="clock border-start border-secondary ps-3 fw-bold" id="live-clock">
+                @*burası js ile otomatik dolacak*@
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        @RenderBody()
+    </main>
+    
+</body>
+</html>
+<script>
+    function updateClock() {
+        // Bu satır direkt SENİN bilgisayarındaki zamanı yakalar
+        const now = new Date();
+
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let seconds = now.getSeconds();
+
+        // AM mi PM mi olduğunu belirle
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+
+        // 12 saatlik formata çevir (Retro görünüm için)
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+
+        // Rakamlar tek haneliyse başına '0' ekle (Örn: 09:05:01)
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        // HTML'deki id'si 'live-clock' olan div'in içine yazdır
+        document.getElementById('live-clock').textContent =
+            hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+    }
+
+    // Her 1000 milisaniyede (1 saniye) bir updateClock fonksiyonunu çalıştır
+    setInterval(updateClock, 1000);
+
+    // Sayfa ilk açıldığında saatin 1 saniye boş kalmaması için hemen bir kez çalıştır
+    updateClock();
+</script>

@@ -1,0 +1,33 @@
+﻿@using MyApiDashboard.Dtos
+@model WeatherDto
+@*
+    WEATHER
+*@
+<section class="col-md-3">
+    <div class="win-window">
+        <div class="win-title-bar"><span>WEATHER_SAT.APP</span><span>[x]</span></div>
+        <div class="win-body bg-blue-ui text-center">
+            <h2 class="mb-0">@Model.Temperature°C</h2>
+            <small>@Model.City</small>
+        </div>
+        <div class="refresh-wrapper bg-blue-ui">
+            <button class="win-refresh-btn" onclick="refreshWeather()">Refresh</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    function refreshWeather() {
+        // WeatherController içindeki metodu çağırıyoruz
+        fetch('/Weather/GetRandomCityWeatherComponent')
+            .then(response => {
+                if (!response.ok) throw new Error("Weather service unavailable");
+                return response.text();
+            })
+            .then(html => {
+                // Gelen yeni HTML'i mevcut section (weather-section) ile değiştiriyoruz
+                document.getElementById("weather-section").outerHTML = html;
+            })
+            .catch(err => console.error("Hava durumu güncellenirken hata oluştu:", err));
+    }
+</script>
